@@ -1,10 +1,32 @@
-# information-security-practice# Electronic Dean's Office
+# Електронний деканат — Information Security Practice
 
-## Опис
-REST API на базі FastAPI + SQLite. Практична робота з дисципліни
-"Безпека інформаційних систем".
+Серверний застосунок «Електронний деканат» на FastAPI з RBAC-архітектурою.
+
 ## Запуск
+
 ```bash
-git clone [https://github.com/23ssuss/information-security-practice.git](https://github.com/23ssuss/information-security-practice.git)
-cd information-security-practice
 docker compose up --build
+```
+
+API доступне за адресою: http://localhost:3010
+
+## Міграції
+
+```bash
+# Створити міграцію
+docker compose exec api alembic revision --autogenerate -m "description"
+
+# Застосувати міграцію
+docker compose exec api alembic upgrade head
+```
+
+## Seed-дані
+
+```bash
+docker compose exec api python -m app.seed
+```
+
+## Перевірка
+
+- http://localhost:3010/ — головна сторінка
+- http://localhost:3010/health — стан системи
